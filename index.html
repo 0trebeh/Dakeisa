@@ -118,9 +118,9 @@
 
                     <!-- Video Area -->
                     <div class="film-video-area">
-                        <video autoplay muted loop playsinline id="heroVideo">
+                        <video id="heroVideo" autoplay muted loop playsinline>
                             <source
-                                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Video%20Project%204-NxFwnAKEoe4Nyn1PGvdanwpi83em0o.mp4"
+                                src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780263166/hero_ayg8y4.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
@@ -174,8 +174,8 @@
                 <div class="about-video-wrapper">
                     <div class="about-video-decoration"></div>
                     <div class="about-video-frame">
-                        <video id="aboutVideo" autoplay loop muted playsinline>
-                            <source src="./public/aboutme.mp4" type="video/mp4">
+                        <video id="aboutVideo" autoplay muted playsinline onclick="togglePlayPause()">
+                            <source src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780261761/aboutme_fwyasw.mp4" type="video/mp4">
                         </video>
                         <div class="video-controls">
                             <button class="video-control-btn" id="playPauseBtn" onclick="togglePlayPause()">
@@ -247,8 +247,8 @@
         </div>
         <div class="demos-grid">
             <div class="demo-card fade-in" onclick="playDemo('corporate')">
-                <video id="corporate" autoplay loop muted playsinline>
-                    <source src="./public/demos/corporate.mp4" type="video/mp4">
+                <video id="corporate" poster="./public/demos/corporate.png">
+                    <source src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780261748/corporate_vocnqd.mp4" type="video/mp4">
                 </video>
                 <div class="demo-card-overlay"></div>
                 <span class="demo-card-tag">Corporativo</span>
@@ -263,8 +263,8 @@
                 </div>
             </div>
             <div class="demo-card fade-in" onclick="playDemo('restaurant')">
-                <video id="restaurant" autoplay loop muted playsinline>
-                    <source src="./public/demos/restaurant.mp4" type="video/mp4">
+                <video id="restaurant" poster="./public/demos/restaurant.png">
+                    <source src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780261741/restaurant_tssh7a.mp4" type="video/mp4">
                 </video>
                 <div class="demo-card-overlay"></div>
                 <span class="demo-card-tag">Restaurantes</span>
@@ -279,8 +279,8 @@
                 </div>
             </div>
             <div class="demo-card fade-in" onclick="playDemo('weddings')">
-                <video id="weddings" autoplay loop muted playsinline>
-                    <source src="./public/demos/wedding.mp4" type="video/mp4">
+                <video id="weddings" poster="./public/demos/wedding.png">
+                    <source src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780261747/wedding_oxm8nw.mp4" type="video/mp4">
                 </video>
                 <div class="demo-card-overlay"></div>
                 <span class="demo-card-tag">Bodas</span>
@@ -295,8 +295,8 @@
                 </div>
             </div>
             <div class="demo-card fade-in" onclick="playDemo('private')">
-                <video id="private" autoplay loop muted playsinline>
-                    <source src="./public/demos/private.mp4" type="video/mp4">
+                <video id="private" poster="./public/demos/private.png">
+                    <source src="https://res.cloudinary.com/dgutnxfud/video/upload/v1780261748/private_pkeopl.mp4" type="video/mp4">
                 </video>
                 <div class="demo-card-overlay"></div>
                 <span class="demo-card-tag">Eventos Privados</span>
@@ -315,7 +315,7 @@
         <div class="audio-player-bar fade-in">
              <!-- Hidden audio -->
             <audio id="audioPlayer">
-                <source src="./public/demos/audio.m4a" type="audio/mpeg">
+                <source src="https://res.cloudinary.com/dgutnxfud/video/upload/audio_ol3s0k.mp4" type="audio/mpeg">
             </audio>
             <div class="audio-icon">
                 <svg viewBox="0 0 24 24">

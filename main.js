@@ -54,8 +54,9 @@ document.querySelectorAll('.fade-in').forEach(el => {
 });
 
 function togglePlayPause() {
-    muteOtherVideos('aboutVideo');
+    pauseOtherVideos('aboutVideo');
     if (aboutVideo.paused) {
+        aboutVideo.volume = 0.5;
         aboutVideo.play();
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
@@ -64,10 +65,17 @@ function togglePlayPause() {
         playIcon.style.display = 'block';
         pauseIcon.style.display = 'none';
     }
+
+    if (aboutVideo.muted) {
+        aboutVideo.currentTime = 0;
+        aboutVideo.muted = false;
+        volumeIcon.style.display = 'block';
+        muteIcon.style.display = 'none';
+    }
 }
 
 function toggleMute() {
-    muteOtherVideos('aboutVideo');
+    pauseOtherVideos('aboutVideo');
     aboutVideo.volume = 0.5; // Set default volume when unmuting
     if (aboutVideo.muted) {
         aboutVideo.muted = false;
@@ -82,7 +90,7 @@ function toggleMute() {
 }
 
 function changeVolume(value) {
-    muteOtherVideos('aboutVideo');
+    pauseOtherVideos('aboutVideo');
     aboutVideo.volume = value / 100;
     if (value == 0) {
         aboutVideo.muted = true;
@@ -96,41 +104,39 @@ function changeVolume(value) {
 }
 
 //mute all videos except the one being played
-function muteOtherVideos(currentVideoId) {
+function pauseOtherVideos(currentVideoId) {
     audio.pause();
-    volumeIcon.style.display = 'none';
-    muteIcon.style.display = 'block'; // Show mute icon in about section
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block'; // pause video about me
 
     const videos = document.querySelectorAll("video");
-
+ 
     videos.forEach(video => {
-        if (video.id !== currentVideoId) {
-            video.muted = true;
+        if (video.id !== currentVideoId && video.id !== "heroVideo") {
+            video.pause();
         }
     });
 }
 
 // Demo play function
 function playDemo(category) {
-    muteOtherVideos(category);
+    pauseOtherVideos(category);
 
     let videoElement = document.getElementById(category);
 
-    if (videoElement.muted) {
-        //videoElement.play();
+    if (videoElement.paused) {
+        videoElement.play();
         videoElement.currentTime = 0;
-        videoElement.muted = false;
         videoElement.volume = 0.5;
     } else {
-        //videoElement.pause();
-        videoElement.muted = true;
+        videoElement.pause();
         videoElement.volume = 0.5;
     }
 }
 
 function toggleAudioPlayer() {
     if (audio.paused) {
-        muteOtherVideos("none");
+        pauseOtherVideos("none");
         audio.play();
         playBtn.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
     } else {
@@ -235,6 +241,5 @@ startTestimonialAutoRotate();
 
 document.addEventListener('DOMContentLoaded', function() {
     animateStats();
-    togglePlayPause();
     changeVolume(0);
 });
