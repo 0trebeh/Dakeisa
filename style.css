@@ -856,9 +856,13 @@ section {
 
 /* Testimonials */
 .testimonials {
+  min-height: 100vh;
   background: var(--dark-blue);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .testimonials::before {
@@ -920,7 +924,6 @@ section {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 3rem;
 }
 
 .testimonial-dot {

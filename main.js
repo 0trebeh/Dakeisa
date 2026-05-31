@@ -2,6 +2,7 @@
 const testimonialItems = document.querySelectorAll('.testimonial-item');
 const testimonialDots = document.querySelectorAll('.testimonial-dot');
 let currentTestimonial = 0;
+let testimonialInterval;
 
 // About Video Controls
 const aboutVideo = document.getElementById('aboutVideo');
@@ -176,9 +177,22 @@ function showTestimonial(index) {
     currentTestimonial = index;
 }
 
+function startTestimonialAutoRotate() {
+    testimonialInterval = setInterval(() => {
+        let nextIndex = (currentTestimonial + 1) % testimonialItems.length;
+        showTestimonial(nextIndex);
+    }, 5000);
+}
+
+function resetTestimonialAutoRotate() {
+    clearInterval(testimonialInterval);
+    startTestimonialAutoRotate();
+}
+
 testimonialDots.forEach(dot => {
     dot.addEventListener('click', () => {
         showTestimonial(parseInt(dot.dataset.index));
+        resetTestimonialAutoRotate();
     });
 });
 
@@ -217,10 +231,7 @@ function animateStats() {
 }
 
 // Auto-rotate testimonials
-setInterval(() => {
-    let nextIndex = (currentTestimonial + 1) % testimonialItems.length;
-    showTestimonial(nextIndex);
-}, 5000);
+startTestimonialAutoRotate();
 
 document.addEventListener('DOMContentLoaded', function() {
     animateStats();
