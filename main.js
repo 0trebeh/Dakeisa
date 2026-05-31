@@ -19,6 +19,8 @@ const progressFill = document.getElementById("progressFill");
 const audioTime = document.getElementById("audioTime");
 const playBtn = document.getElementById('audioPlayIcon');
 
+const heroVideo = document.getElementById('heroVideo');
+
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -49,8 +51,16 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
+const observerhero = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            heroVideo.play().catch(() => {});
+        } else {
+            heroVideo.pause();
+        }
+    });
+}, {
+    threshold: 0.5
 });
 
 function togglePlayPause() {
@@ -238,6 +248,13 @@ function animateStats() {
 
 // Auto-rotate testimonials
 startTestimonialAutoRotate();
+
+// Observers
+document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+});
+
+observerhero.observe(heroVideo);
 
 document.addEventListener('DOMContentLoaded', function() {
     animateStats();
